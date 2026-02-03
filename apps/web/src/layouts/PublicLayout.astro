@@ -1,0 +1,41 @@
+---
+import '../styles/tokens.css';
+import '../styles/public-menu.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  slug?: string;
+}
+
+const { title = 'Dona', description = '', slug = '' } = Astro.props;
+const pageUrl = Astro.url.href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — Dona</title>
+    <meta name="description" content={description || `${title} menu on Dona`} />
+    <meta property="og:title" content={`${title} — Dona`} />
+    <meta property="og:description" content={description || `${title} menu on Dona`} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="public-body">
+    <main class="public-main">
+      <slot />
+    </main>
+    <footer class="public-footer">
+      <p>Powered by <a href="/">Dona</a></p>
+    </footer>
+  </body>
+</html>

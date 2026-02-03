@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: dona-postgres
+    environment:
+      POSTGRES_USER: dona
+      POSTGRES_PASSWORD: dona
+      POSTGRES_DB: dona
+    ports:
+      - "5432:5432"
+    volumes:
+      - dona-data:/var/lib/postgresql/data
+
+volumes:
+  dona-data:

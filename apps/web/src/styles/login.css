@@ -65,6 +65,57 @@
   line-height: 1.5;
 }
 
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--touch-target);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-base);
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: #3d3a36;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(139, 119, 78, 0.3);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.google-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(139, 119, 78, 0.5);
+}
+
+.google-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 119, 78, 0.15);
+}
+
+.google-button:active {
+  transform: scale(0.98);
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: #7a6d5e;
+  font-size: var(--text-sm);
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(139, 119, 78, 0.2);
+}
+
 .login-form {
   display: flex;
   flex-direction: column;

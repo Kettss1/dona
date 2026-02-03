@@ -1,14 +1,12 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
-
-const isProduction = process.env.NODE_ENV === 'production';
+import node from '@astrojs/node';
 
 export default defineConfig({
   integrations: [react()],
-  site: 'https://Kettss1.github.io',
-  base: isProduction ? '/dona' : '/',
-  output: 'static',
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
   server: {
-    port: 5173,
+    port: 5174,
   },
 });

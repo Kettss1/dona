@@ -1,50 +1,36 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
+import cookie from '@fastify/cookie';
+import jwt from '@fastify/jwt';
+import { config } from './config.js';
+import { authRoutes } from './routes/auth.js';
+import { googleAuthRoutes } from './routes/google-auth.js';
+import { restaurantRoutes } from './routes/restaurant.js';
+import { menuRoutes } from './routes/menu.js';
 
 const fastify = Fastify({
   logger: true
 });
 
 await fastify.register(cors, {
-  origin: ['http://localhost:5173', 'http://localhost:4321'],
+  origin: ['http://localhost:5174', 'http://localhost:4321'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 });
 
-interface LoginBody {
-  email: string;
-  password: string;
-}
+await fastify.register(cookie);
 
-fastify.post<{ Body: LoginBody }>('/api/auth/login', async (request, reply) => {
-  const { email, password } = request.body;
-
-  if (!email || !password) {
-    return reply.status(400).send({
-      ok: false,
-      message: 'Email and password are required'
-    });
+await fastify.register(jwt, {
+  secret: config.jwtSecret,
+  sign: {
+    expiresIn: config.jwtExpiresIn
   }
-
-  if (!email.includes('@')) {
-    return reply.status(400).send({
-      ok: false,
-      message: 'Invalid email format'
-    });
-  }
-
-  if (password.length < 6) {
-    return reply.status(400).send({
-      ok: false,
-      message: 'Password must be at least 6 characters'
-    });
-  }
-
-  return reply.send({
-    ok: true,
-    message: 'Login successful'
-  });
 });
+
+await fastify.register(authRoutes);
+await fastify.register(googleAuthRoutes);
+await fastify.register(restaurantRoutes);
+await fastify.register(menuRoutes);
 
 fastify.get('/api/health', async () => {
   return { status: 'ok' };

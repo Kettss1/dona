@@ -1,0 +1,10 @@
+---
+import AppLayout from '../../layouts/AppLayout.astro';
+import '../../styles/forms.css';
+import '../../styles/menus.css';
+import { MenuListApp } from '../../components/MenuListApp';
+---
+
+<AppLayout title="Menus — Dona">
+  <MenuListApp client:load />
+</AppLayout>

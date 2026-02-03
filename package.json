@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "pnpm -r --parallel dev",
-    "build": "pnpm -r build"
+    "build": "pnpm -r build",
+    "migrate": "pnpm --filter api migrate"
   },
   "devDependencies": {
     "typescript": "^5.3.3"

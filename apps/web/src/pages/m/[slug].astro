@@ -1,0 +1,52 @@
+---
+import PublicLayout from '../../layouts/PublicLayout.astro';
+
+const { slug } = Astro.params;
+const API_URL = 'http://localhost:4000';
+
+let menu = null;
+try {
+  const res = await fetch(`${API_URL}/api/public/menus/${slug}`);
+  const data = await res.json();
+  if (data.ok) menu = data.menu;
+} catch {}
+
+if (!menu) {
+  return Astro.redirect('/404');
+}
+
+const formatPrice = (price: string) => {
+  const num = parseFloat(price);
+  if (isNaN(num)) return price;
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
+};
+---
+
+<PublicLayout title={menu.title} description={menu.description || ''} slug={slug}>
+  <article class="public-menu">
+    <h1 class="public-menu-title">{menu.title}</h1>
+    {menu.description && <p class="public-menu-description">{menu.description}</p>}
+
+    {menu.sections.map((section: any) => (
+      <section class="public-section">
+        <h2 class="public-section-title">{section.title}</h2>
+        {section.items.map((item: any) => (
+          <div class="public-item">
+            <div class="public-item-header">
+              <span class="public-item-name">{item.name}</span>
+              {item.price && <span class="public-item-dots"></span>}
+              {item.price && <span class="public-item-price">{formatPrice(item.price)}</span>}
+            </div>
+            {item.description && <p class="public-item-desc">{item.description}</p>}
+          </div>
+        ))}
+      </section>
+    ))}
+
+    <div class="public-download">
+      <a href={`${API_URL}/api/public/menus/${slug}/pdf`} class="btn-download">
+        Download PDF
+      </a>
+    </div>
+  </article>
+</PublicLayout>
