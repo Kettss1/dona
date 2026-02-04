@@ -99,11 +99,10 @@ function SortableSection({
               onChange={(e) => setTitle(e.target.value)}
               onBlur={handleSaveTitle}
               onKeyDown={(e) => e.key === 'Enter' && handleSaveTitle()}
-              autoFocus
             />
           </div>
         ) : (
-          <h3 className="section-title" onClick={() => setEditing(true)}>{section.title}</h3>
+          <button type="button" className="section-title" onClick={() => setEditing(true)}>{section.title}</button>
         )}
         <button className="btn-icon btn-danger" onClick={handleDelete} title={t('editor.section.delete')}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">

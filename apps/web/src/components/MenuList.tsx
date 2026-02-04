@@ -102,7 +102,6 @@ export function MenuList() {
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             disabled={creating}
-            autoFocus
           />
           <button type="submit" className="btn btn-primary" disabled={creating || !newTitle.trim()}>
             {creating ? '...' : t('menus.create.submit')}

@@ -199,10 +199,20 @@
   margin: calc(-1 * var(--space-1)) calc(-1 * var(--space-2));
   border-radius: var(--radius-sm);
   transition: background var(--transition-fast);
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-family: var(--font-sans);
+  color: var(--color-text);
 }
 
 .section-title:hover {
   background: white;
+}
+
+.section-title:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-accent);
 }
 
 .drag-handle {
@@ -275,6 +285,16 @@
   gap: var(--space-2);
   cursor: pointer;
   min-width: 0;
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+}
+
+.item-display:focus {
+  outline: none;
 }
 
 .item-name {

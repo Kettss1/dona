@@ -5,10 +5,9 @@ import '../styles/public-menu.css';
 interface Props {
   title?: string;
   description?: string;
-  slug?: string;
 }
 
-const { title = 'Dona', description = '', slug = '' } = Astro.props;
+const { title = 'Dona', description = '' } = Astro.props;
 const pageUrl = Astro.url.href;
 ---
 

@@ -94,11 +94,11 @@ function SortableItem({
           </div>
         </div>
       ) : (
-        <div className="item-display" onClick={() => setEditing(true)}>
+        <button type="button" className="item-display" onClick={() => setEditing(true)}>
           <span className="item-name">{item.name}</span>
           {item.price && <span className="item-price">${item.price}</span>}
           {item.description && <span className="item-desc">{item.description}</span>}
-        </div>
+        </button>
       )}
       {!editing && (
         <button className="btn-icon btn-danger item-delete" onClick={handleDelete}>

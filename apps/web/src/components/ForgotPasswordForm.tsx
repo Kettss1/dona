@@ -26,7 +26,7 @@ export function ForgotPasswordForm() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
         });
-        const data = await res.json();
+        await res.json();
 
         if (res.status === 429) {
           setError(t('forgot.ratelimit'));
